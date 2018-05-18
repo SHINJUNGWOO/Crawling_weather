@@ -20,14 +20,13 @@ class weather_midterm:
             data_dir[city.get_text()]=[]
 
         temp_list=[]
-        date=[]
-        time=[]
+
         for weather in temp_weather:
 
             temp_list.append(weather.get_text()[1:-1].split()[1:])
 
 
-        cnt=-1
+        cnt = -1
         for i in temp_list:
             if temp_list[0][0] == i[0] and temp_list[0][1] == i[1]:
                 cnt += 1
@@ -44,9 +43,7 @@ class weather_midterm:
 
         self.city_list=city_list
         self.data=data_dir
-    def show_data(self):
-        show_date=[self.data.get(self.city_find).get(self.date_find+" 00:00"),self.data.get(self.city_find).get(self.date_find+" 12:00")]
-        return show_date
+
 
 class local_weather:
     def __init__(self,url):
@@ -69,3 +66,5 @@ class local_weather:
 #----------------------------test-------------------------------------------------------------
 a=weather_midterm("http://www.weather.go.kr/weather/forecast/mid-term-rss3.jsp?stnId=109")
 b=local_weather("http://www.weather.go.kr/wid/queryDFSRSS.jsp?zone=4146554000")
+
+# TODO: 지역 날씨 처리 로직 작성, 데이터 처리
