@@ -67,6 +67,10 @@ class local_weather:
         for i in temp_weather:
             temp_data.append(i.get_text().split("\n")[1:-10])
         for data in temp_data:
+            if data[3]=='-999.0':
+                data[3]='공개시간 초과'
+            if data[4]=='-999.0':
+                data[4]='공개시간 초과'
             data[5]=cloud_dic[data[5]]
             data[6]=rainy_dic[data[6]]
             data_dir[str(int(time)+int(data[1]))+" "+data[0]]=data[2:]
@@ -75,6 +79,5 @@ class local_weather:
 
 
 #----------------------------test-------------------------------------------------------------
-a=weather_midterm("http://www.weather.go.kr/weather/forecast/mid-term-rss3.jsp?stnId=109")
-b=local_weather("http://www.weather.go.kr/wid/queryDFSRSS.jsp?zone=4146554000")
-# TODO: 지역 날씨 처리 로직 작성, 데이터 처리
+# a=weather_midterm("http://www.weather.go.kr/weather/forecast/mid-term-rss3.jsp?stnId=109")
+# b=local_weather("http://www.weather.go.kr/wid/queryDFSRSS.jsp?zone=4146554000")
