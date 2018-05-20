@@ -6,11 +6,11 @@ class screen:
         self.local_weather=local_weather
         self.mode=0
         self.mode_dir = {0: 'Auto Mode', 1: 'Time Mode', 2: 'Test Mode'}
-        self.screen_code=0
+        self.screen_code=4
         self.day_selected=None
         self.time_selected=None
-# mode select screen=1 Weather Impormation=2 time select=3
-# mode number : 0=Auto,1:Timemode 2:TestMode
+# screen code{1:mode select screen , 2:Weather Impormation ,3: time select, 4:Condition}
+# mode number {0=Auto,1:Timemode 2:TestMode}
     def first_screen(self):
         print('''
         Blind Automatic move System:
@@ -19,7 +19,11 @@ class screen:
         -                                     -
         - (W)Weather Impormation              -
         -                                     -
-        _ (T)TIme Select                      - 
+        - (T)TIme Select                      -
+        -                                     -
+        _ (C)Condition                        -
+        -                                     -
+        _ (A)Manual Control                   - 
         --------------------------------------- 
         ''')
         cnt_check=input("Input:")
@@ -29,6 +33,10 @@ class screen:
             self.screen_code=2
         elif cnt_check == 'T' or cnt_check == 't':
             self.screen_code=3
+        elif cnt_check == 'C' or cnt_check == 'c':
+            self.screen_code=4
+        elif cnt_check == 'A' or cnt_check == 'a':
+            self.screen_code=5
         else:
             self.screen_code=0
         os.system('cls')
@@ -52,13 +60,13 @@ class screen:
         cnt_check=input("Input:")
         if cnt_check=='A'or cnt_check=='a':
             self.mode=0
-            self.screen_code = 0
+            self.screen_code = 4
         elif cnt_check=='T'or cnt_check=='t':
             self.mode=1
-            self.screen_code = 0
+            self.screen_code = 4
         elif cnt_check == 'E' or cnt_check == 'e':
             self.mode=2
-            self.screen_code = 0
+            self.screen_code = 4
         else:
             self.screen_code=1
         os.system('cls')
@@ -77,18 +85,25 @@ class screen:
             os.system('cls')
             self.local_weather_print()
             input("\n\tPress Any Key:")
-            self.screen_code=0
+            self.screen_code=4
             os.system('cls')
         elif cnt_check=='M'or cnt_check=='m':
             os.system('cls')
             self.mid_weather_print()
             input("\n\tPress Any Key:")
-            self.screen_code=0
+            self.screen_code=4
+            os.system('cls')
+        else:
+            self.screen_code=4
             os.system('cls')
 
     def Time_Select(self):
         if self.mode !=0 and self.mode !=1:
             self.screen_code=1
+        elif self.mode ==2:
+            os.system('cls')
+            self.day_selected=input("Select day")
+            self.time_selected = input("Select time")
         else:
             os.system('cls')
             print('''
@@ -158,10 +173,37 @@ class screen:
                     self.time_selected=dnt_check
             else:
                 os.system('cls')
-                self.screen_code=0
+                self.screen_code=4
 
+    def Condition(self):
+        local_data=self.local_weather.data[self.local_weather.date_list[0]]
+        # Fisrt data of local_weather_data
+        os.system("cls")
+        print('''
+        Blind Automatic move System:
+        ---------------------------------------
+        -Resent Time:%s
+        ---------------------------------------
+        평균 기온 : %s
+        
+        강수 상태 :%s
+        
+        날씨 : %s
+        ---------------------------------------
+        -Setting(Keyboard Interrupt(CTRL+C))  -
+        --------------------------------------- 
+        '''%(datetime.datetime.now(),local_data[0],local_data[4],local_data[5]))
 
+    def ManualMove(self):
+        print('''
+        Blind Automatic move System:
+        ---------------------------------------
+        - (U)UP                               -
+        -                                     -
+        - (D)DOWN                             -
 
+        --------------------------------------- 
+        ''')
     def mid_weather_print(self):
         weather=self.mid_weather
         data= weather.data[weather.city_find]
@@ -192,12 +234,14 @@ class screen:
     최고 기온 : %s
     최저 기온 : %s
     기상 상황 : %s
-    강수 상태 :%s
-    날씨 : %s
-    Weather : %s
+    강수 상태 : %s
+    날씨      : %s
+    Weather   : %s
     강수 확룰 : %s
         
     '''%(day , str(int(time)-3)+"~"+time ,data[date][0],data[date][1],data[date][2],data[date][3],data[date][4],data[date][5],data[date][6],data[date][7]),end="---------------------------------------")
+
+
 
 
 

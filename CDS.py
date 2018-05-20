@@ -5,7 +5,7 @@ class CDS:
 
     def get_value(self):
         pass
-    def margin(self):
+    def check(self):
         self.get_value()
         if self.value>=self.threshold:
             return True
