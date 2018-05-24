@@ -192,7 +192,7 @@ class screen:
         ---------------------------------------
         -Setting(Keyboard Interrupt(CTRL+C))  -
         --------------------------------------- 
-        '''%(datetime.datetime.now(),local_data[0],local_data[4],local_data[5]))
+        '''%(datetime.datetime.now().strftime("%Y-%m-%d   %H:%M:%S"),local_data[0],local_data[4],local_data[5]))
 
     def ManualMove(self):
         print('''

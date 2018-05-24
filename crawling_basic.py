@@ -4,15 +4,14 @@ from CDS import CDS
 from Processing import processging
 import os
 import time
-import datetime as dt
-#from Step_move import easydriver
+from Step_move import easydriver
 
 
 
 mid_weather=weather_midterm("http://www.weather.go.kr/weather/forecast/mid-term-rss3.jsp?stnId=109")
 local_weather=local_weather("http://www.weather.go.kr/wid/queryDFSRSS.jsp?zone=4146554000")
 
-#step=easydriver(18, 0.004, 23, 24, 17, 25)
+step=easydriver(18, 0.004, 23, 24, 17, 25)
 #only use in raspberry
 
 screen=sc(mid_weather,local_weather)
@@ -21,8 +20,9 @@ process=processging(screen,cds)
 run=True
 
 os.system('cls')
-
+step.set_full_step()
 while(run):
+    first_motor_condition=process.condition
     if screen.screen_code==0:
         screen.first_screen()
     elif screen.screen_code==1:
@@ -54,6 +54,16 @@ while(run):
     else:
         run=False
     process.main_process(screen,cds)
+    second_motor_condition=process.condition
+
+    if first_motor_condition==False and second_motor_condition ==True:
+        step.set_direction(True)
+        for i in range(0, 1600):
+            step.step()
+    if first_motor_condition==True and second_motor_condition ==False:
+        step.set_direction(False)
+        for i in range(0, 1600):
+            step.step()
 
 
 
