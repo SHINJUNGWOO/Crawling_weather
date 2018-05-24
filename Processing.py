@@ -69,7 +69,7 @@ class processging:
     def manual_move(self,way):
         self.fix=False
         if self.screen.mode==0:
-            os.system('cls')
+            os.system("clear")
             print('''
         Mode Error=(AutoMode)
         ''')

@@ -39,7 +39,7 @@ class screen:
             self.screen_code=5
         else:
             self.screen_code=0
-        os.system('cls')
+        os.system("clear")
 
     def mode_select(self):
 
@@ -69,7 +69,7 @@ class screen:
             self.screen_code = 4
         else:
             self.screen_code=1
-        os.system('cls')
+        os.system("clear")
 
     def weather_Inpormation(self):
         print('''
@@ -82,30 +82,30 @@ class screen:
             ''')
         cnt_check=input("Input:")
         if cnt_check=='L'or cnt_check=='l':
-            os.system('cls')
+            os.system("clear")
             self.local_weather_print()
             input("\n\tPress Any Key:")
             self.screen_code=4
-            os.system('cls')
+            os.system("clear")
         elif cnt_check=='M'or cnt_check=='m':
-            os.system('cls')
+            os.system("clear")
             self.mid_weather_print()
             input("\n\tPress Any Key:")
             self.screen_code=4
-            os.system('cls')
+            os.system("clear")
         else:
             self.screen_code=4
-            os.system('cls')
+            os.system("clear")
 
     def Time_Select(self):
         if self.mode !=0 and self.mode !=1:
             self.screen_code=1
         elif self.mode ==2:
-            os.system('cls')
+            os.system("clear")
             self.day_selected=input("Select day")
             self.time_selected = input("Select time")
         else:
-            os.system('cls')
+            os.system("clear")
             print('''
         Blind Automatic move System:
         ---------------------------------------
@@ -126,7 +126,7 @@ class screen:
 
             cnt_check = input("Input:")
             if cnt_check == 'D' or cnt_check == 'd':
-                os.system('cls')
+                os.system("clear")
                 print('''
         Blind Automatic move System:
         ---------------------------------------
@@ -149,7 +149,7 @@ class screen:
                 else:
                     self.day_selected=dnt_check
             elif cnt_check == 'T' or cnt_check == 't':
-                os.system('cls')
+                os.system("clear")
                 print('''
         Blind Automatic move System:
         ---------------------------------------
@@ -172,13 +172,13 @@ class screen:
                 else:
                     self.time_selected=dnt_check
             else:
-                os.system('cls')
+                os.system("clear")
                 self.screen_code=4
 
     def Condition(self):
         local_data=self.local_weather.data[self.local_weather.date_list[0]]
         # Fisrt data of local_weather_data
-        os.system("cls")
+        os.system("clear")
         print('''
         Blind Automatic move System:
         ---------------------------------------

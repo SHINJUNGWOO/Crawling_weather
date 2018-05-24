@@ -19,7 +19,7 @@ cds=CDS()
 process=processging(screen,cds)
 run=True
 
-os.system('cls')
+os.system("clear")
 step.set_full_step()
 while(run):
     first_motor_condition=process.condition
@@ -49,7 +49,7 @@ while(run):
             process.manual_move(False)
             screen.screen_code = 4
         else:
-            os.system('cls')
+            os.system("clear")
             screen.screen_code=0
     else:
         run=False
@@ -70,6 +70,6 @@ while(run):
     try:
         time.sleep(0.5)
     except:
-        os.system("cls")
+        os.system("clear")
         screen.screen_code=0
 
